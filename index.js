@@ -1,4 +1,4 @@
-var APIKey = "a37b207ab7356c57e7f33d87a8a3d1e1";
+var APIKey = "89fd17c1d5d7414ecd0f21b3c17c86ec";
 
 //getting value from input
 
@@ -11,19 +11,39 @@ searchBtn.addEventListener('click', function () {
 })
 
 //getting coordinates fom city name 
-//TODO: api key is not working, try second key
 
 var cityName = localStorage.getItem("city")
-var cityQueryURL = "http://api.openweathermap.org/geo/1.0/direct?q={" + cityName + "}&appid={" + APIKey + "}"
+var cityQueryURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&appid=" + APIKey 
 
 fetch(cityQueryURL)
     .then(function(response) {
       return response.json();
     }).then(function(data) {
-      console.log(data);
+      console.log(data)
+      console.log(data[0].lat)
+      console.log(data[0].lon)
+
+      const lat = data[0].lat
+      const lon = data[0].lon
+
+      console.log(lat + ` ` + lon)
+
+      var coordQueryURL = "api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey
+
+      fetch(coordQueryURL)
+    .then(function(response) {
+      return response.json();
+    }).then(function(data) {
+      console.log(data)
+    })
+
     });
 
-var lat = x 
-var lon = y 
+    // const lat = data[0].lat
+    // const lon = data[0].lon
 
-var coordQueryURL = "api.openweathermap.org/data/2.5/forecast?lat={" + lat + "}&lon={" + lon + "}&appid={" + APIKey + "}"
+    // console.log(lat + ` ` + lon)
+
+// ================================================================================== //
+
+   
