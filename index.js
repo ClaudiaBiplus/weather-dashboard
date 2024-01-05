@@ -19,15 +19,10 @@ fetch(cityQueryURL)
     .then(function(response) {
       return response.json();
     }).then(function(data) {
-      console.log(data)
-      console.log(data[0].lat)
-      console.log(data[0].lon)
 
 //where latitude and longitude are
       const lat = data[0].lat
       const lon = data[0].lon
-
-      console.log(lat + ` ` + lon)
 
 //getting weather info
       var coordQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=metric"
@@ -36,18 +31,7 @@ fetch(cityQueryURL)
     .then(function(response) {
       return response.json();
     }).then(function(data) {
-      console.log(data)
-      console.log(data.list)
-      //getting date
-      //console.log(data.list[0].dt_txt)
-      const dateStr = data.list[0].dt_txt
-      console.log(dateStr)
-      const splitStr = dateStr.split(' ')
-      const date = splitStr[0]
-      console.log(date)
-      const compareDate = data.list[1].dt_txt.split(' ')[0]
-      console.log(compareDate)
-
+      
       //getting temperature
       console.log(data.list[0].main.temp)
       //getting wind
@@ -64,8 +48,6 @@ fetch(cityQueryURL)
       let dayFiveAllTemp = [];
       let fiveDaysAllTemp = []
 
-      console.log(data.list.length)
-
       for (let j = 1; j < data.list.length; j++) {
 
         if (data.list[0].dt_txt.split(' ')[0] === data.list[j].dt_txt.split(' ')[0]) {
@@ -77,11 +59,39 @@ fetch(cityQueryURL)
 
       function add(accumulator, currentValue) {
         return accumulator + currentValue
-      }  
+      }
+      
+      //temperature for today's date
       const todayAvrgTemp = Math.round(todayAllTemp.reduce(add) / todayAllTemp.length)
-
-      console.log(todayAllTemp)
       console.log(todayAvrgTemp)
+
+      //temperature for days after today
+      
+      for (let i = 0; i < fiveDaysAllTemp.length; i++) {
+        if (i < 8) {
+        dayOneAllTemp.push(fiveDaysAllTemp[i])
+        } else if (i >= 8 && i < 16) {
+          dayTwoAllTemp.push(fiveDaysAllTemp[i])
+        } else if (i >= 16 && i < 24) {
+          dayThreeAllTemp.push(fiveDaysAllTemp[i])
+        } else if (i >= 24 && i < 32) {
+          dayFourAllTemp.push(fiveDaysAllTemp[i])
+        } else {
+          dayFiveAllTemp.push(fiveDaysAllTemp[i])
+        }
+      }
+
+      const dayOneAvrgTemp = Math.round(dayOneAllTemp.reduce(add) / dayOneAllTemp.length)
+      const dayTwoAvrgTemp = Math.round(dayTwoAllTemp.reduce(add) / dayTwoAllTemp.length)
+      const dayThreeAvrgTemp = Math.round(dayThreeAllTemp.reduce(add) / dayThreeAllTemp.length)
+      const dayFourAvrgTemp = Math.round(dayFourAllTemp.reduce(add) / dayFourAllTemp.length)
+      const dayFiveAvrgTemp = Math.round(dayFiveAllTemp.reduce(add) / dayFiveAllTemp.length)
+  
+      console.log(dayOneAvrgTemp)
+      console.log(dayTwoAvrgTemp)
+      console.log(dayThreeAvrgTemp)
+      console.log(dayFourAvrgTemp)
+      console.log(dayFiveAvrgTemp)
 
 
 
