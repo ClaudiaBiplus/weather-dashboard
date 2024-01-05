@@ -32,10 +32,9 @@ fetch(cityQueryURL)
       return response.json();
     }).then(function(data) {
 
-      //getting icon
-      console.log(data.list[0].weather[0].icon)
+      console.log(data.list)
       
-      //getting temperatures of the different days
+//getting temperatures of the different days
       let todayAllTemp = [data.list[0].main.temp];
       let dayOneAllTemp = [];
       let dayTwoAllTemp = [];
@@ -57,11 +56,11 @@ fetch(cityQueryURL)
         return accumulator + currentValue
       }
       
-      //temperature for today's date
+//temperature for today's date
       const todayAvrgTemp = Math.round(todayAllTemp.reduce(add) / todayAllTemp.length)
       console.log(todayAvrgTemp)
 
-      //temperature for days after today
+//temperature for days after today
       
       for (let i = 0; i < fiveDaysAllTemp.length; i++) {
         if (i < 8) {
@@ -89,7 +88,7 @@ fetch(cityQueryURL)
       console.log(dayFourAvrgTemp)
       console.log(dayFiveAvrgTemp)
 
-      //getting wind for the different days
+//getting wind for the different days
       let todayAllWind = [data.list[0].wind.speed];
       let dayOneAllWind = [];
       let dayTwoAllWind = [];
@@ -107,11 +106,11 @@ fetch(cityQueryURL)
         }
       }
 
-      //wind for today's date
+//wind for today's date
       const todayAvrgWind = Math.round(todayAllWind.reduce(add) / todayAllWind.length)
       console.log(todayAvrgWind)
 
-      //wind for days after today
+//wind for days after today
       
       for (let x = 0; x < fiveDaysAllWind.length; x++) {
         if (x < 8) {
@@ -139,7 +138,7 @@ fetch(cityQueryURL)
       console.log(dayFourAvrgWind)
       console.log(dayFiveAvrgWind)
 
-      //getting humidity of the different days
+//getting humidity of the different days
       let todayAllHumidity = [data.list[0].main.humidity];
       let dayOneAllHumidity = [];
       let dayTwoAllHumidity = [];
@@ -157,12 +156,11 @@ fetch(cityQueryURL)
         }
       }
 
-      //humidity for today's date
+//humidity for today's date
       const todayAvrgHumidity = Math.round(todayAllHumidity.reduce(add) / todayAllHumidity.length)
       console.log(todayAvrgHumidity)
 
-      //humidity for days after today
-      
+//humidity for days after today
       for (let i = 0; i < fiveDaysAllHumidity.length; i++) {
         if (i < 8) {
         dayOneAllHumidity.push(fiveDaysAllHumidity[i])
@@ -189,14 +187,51 @@ fetch(cityQueryURL)
       console.log(dayFourAvrgHumidity)
       console.log(dayFiveAvrgHumidity)
 
-      // Display today's weather
+//getting icon for todays weather
+      const todayIcon = data.list[0].weather[0].icon
+      const todayIconUrl = "http://openweathermap.org/img/w/" + todayIcon + ".png";
+
+//display today's weather
       const todayWeatherDiv = document.querySelector('#today');
       const todaysDate = dayjs().format('D MMM YYYY')
       todayWeatherDiv.innerHTML = `
       <h3>${cityName}</br>${todaysDate}</h3>
+      <div id="icon"><img id="wicon" src="${todayIconUrl}" alt="Weather icon"></div>
       <p>Temperature: ${todayAvrgTemp}°C</p>
       <p>Wind Speed: ${todayAvrgWind} m/s</p>
       <p>Humidity: ${todayAvrgHumidity}%</p>
+      `;
+
+//display following days weather
+      const forecastDiv = document.querySelector('#forecast');
+      const dayOne = dayjs().add(1, 'd').format('D MMM YYYY')
+      const dayTwo = dayjs().add(2, 'd').format('D MMM YYYY')
+      const dayThree = dayjs().add(3, 'd').format('D MMM YYYY')
+      const dayFour = dayjs().add(4, 'd').format('D MMM YYYY')
+      const dayFive = dayjs().add(5, 'd').format('D MMM YYYY')
+      
+      forecastDiv.innerHTML = `
+      <h3>5-Day Forecast</h3>
+      <h4>${dayOne}</h4>
+      <p>Temperature: ${dayOneAvrgTemp}°C</p>
+      <p>Wind Speed: ${dayOneAvrgWind} m/s</p>
+      <p>Humidity: ${dayOneAvrgHumidity}%</p>
+      <h4>${dayTwo}</h4>
+      <p>Temperature: ${dayTwoAvrgTemp}°C</p>
+      <p>Wind Speed: ${dayTwoAvrgWind} m/s</p>
+      <p>Humidity: ${dayTwoAvrgHumidity}%</p>
+      <h4>${dayThree}</h4>
+      <p>Temperature: ${dayThreeAvrgTemp}°C</p>
+      <p>Wind Speed: ${dayThreeAvrgWind} m/s</p>
+      <p>Humidity: ${dayThreeAvrgHumidity}%</p>
+      <h4>${dayFour}</h4>
+      <p>Temperature: ${dayFourAvrgTemp}°C</p>
+      <p>Wind Speed: ${dayFourAvrgWind} m/s</p>
+      <p>Humidity: ${dayFourAvrgHumidity}%</p>
+      <h4>${dayFive}</h4>
+      <p>Temperature: ${dayFiveAvrgTemp}°C</p>
+      <p>Wind Speed: ${dayFiveAvrgWind} m/s</p>
+      <p>Humidity: ${dayFiveAvrgHumidity}%</p>
       `;
 
     })
