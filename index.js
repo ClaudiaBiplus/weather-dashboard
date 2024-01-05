@@ -23,26 +23,26 @@ fetch(cityQueryURL)
       console.log(data[0].lat)
       console.log(data[0].lon)
 
+//where latitude and longitude are
       const lat = data[0].lat
       const lon = data[0].lon
 
       console.log(lat + ` ` + lon)
 
-      var coordQueryURL = "api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey
+//getting weather info
+      var coordQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey
 
       fetch(coordQueryURL)
     .then(function(response) {
       return response.json();
     }).then(function(data) {
       console.log(data)
+      console.log(data.list)
     })
 
+    
+
     });
-
-    // const lat = data[0].lat
-    // const lon = data[0].lon
-
-    // console.log(lat + ` ` + lon)
 
 // ================================================================================== //
 
