@@ -191,6 +191,9 @@ fetch(cityQueryURL)
       const todayIcon = data.list[0].weather[0].icon
       const todayIconUrl = "http://openweathermap.org/img/w/" + todayIcon + ".png";
 
+//getting icon for folllowing days
+
+
 //display today's weather
       const todayWeatherDiv = document.querySelector('#today');
       const todaysDate = dayjs().format('D MMM YYYY')
@@ -234,12 +237,38 @@ fetch(cityQueryURL)
       <p>Humidity: ${dayFiveAvrgHumidity}%</p>
       `;
 
+
+// ================================================================================== //
+      console.log('test from here')
+
+      const todayWeather = [];
+      const dayOneWeather = [];
+      const dayTwoWeather = [];
+      const dayThreeWeather = [];
+      const dayFourWeather = [];
+      const dayFiveWeather = [];
+      const fiveDaysWeather =[];
+
+      for (let m = 1; m < data.list.length; m++) {
+
+        if (data.list[0].dt_txt.split(' ')[0] === data.list[m].dt_txt.split(' ')[0]) {
+          let list = data.list[m]
+          todayWeather.push(list)
+        } else {
+          fiveDaysWeather.push(data.list[m])
+        }
+      }
+
+      console.log(todayWeather)
+
+
+
+
     })
 
-    
+
 
     });
 
-// ================================================================================== //
 
    
