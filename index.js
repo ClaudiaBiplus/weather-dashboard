@@ -31,10 +31,10 @@ fetch(cityQueryURL)
     .then(function(response) {
       return response.json();
     }).then(function(data) {
-      
-      //getting humidity
-      console.log(data.list[0].main.humidity)
 
+      //getting icon
+      console.log(data.list[0].weather[0].icon)
+      
       //getting temperatures of the different days
       let todayAllTemp = [data.list[0].main.temp];
       let dayOneAllTemp = [];
@@ -188,6 +188,16 @@ fetch(cityQueryURL)
       console.log(dayThreeAvrgHumidity)
       console.log(dayFourAvrgHumidity)
       console.log(dayFiveAvrgHumidity)
+
+      // Display today's weather
+      const todayWeatherDiv = document.querySelector('#today');
+      const todaysDate = dayjs().format('D MMM YYYY')
+      todayWeatherDiv.innerHTML = `
+      <h3>${cityName}</br>${todaysDate}</h3>
+      <p>Temperature: ${todayAvrgTemp}°C</p>
+      <p>Wind Speed: ${todayAvrgWind} m/s</p>
+      <p>Humidity: ${todayAvrgHumidity}%</p>
+      `;
 
     })
 
