@@ -32,10 +32,6 @@ fetch(cityQueryURL)
       return response.json();
     }).then(function(data) {
       
-      //getting temperature
-      console.log(data.list[0].main.temp)
-      //getting wind
-      console.log(data.list[0].wind.speed)
       //getting humidity
       console.log(data.list[0].main.humidity)
 
@@ -93,12 +89,105 @@ fetch(cityQueryURL)
       console.log(dayFourAvrgTemp)
       console.log(dayFiveAvrgTemp)
 
+      //getting wind for the different days
+      let todayAllWind = [data.list[0].wind.speed];
+      let dayOneAllWind = [];
+      let dayTwoAllWind = [];
+      let dayThreeAllWind =[];
+      let dayFourAllWind = [];
+      let dayFiveAllWind = [];
+      let fiveDaysAllWind = []
 
+      for (let y = 1; y < data.list.length; y++) {
 
+        if (data.list[0].dt_txt.split(' ')[0] === data.list[y].dt_txt.split(' ')[0]) {
+          todayAllWind.push(data.list[y].wind.speed)
+        } else {
+          fiveDaysAllWind.push(data.list[y].wind.speed)
+        }
+      }
 
+      //wind for today's date
+      const todayAvrgWind = Math.round(todayAllWind.reduce(add) / todayAllWind.length)
+      console.log(todayAvrgWind)
 
+      //wind for days after today
+      
+      for (let x = 0; x < fiveDaysAllWind.length; x++) {
+        if (x < 8) {
+        dayOneAllWind.push(fiveDaysAllWind[x])
+        } else if (x >= 8 && x < 16) {
+          dayTwoAllWind.push(fiveDaysAllWind[x])
+        } else if (x >= 16 && x < 24) {
+          dayThreeAllWind.push(fiveDaysAllWind[x])
+        } else if (x >= 24 && x < 32) {
+          dayFourAllWind.push(fiveDaysAllWind[x])
+        } else {
+          dayFiveAllWind.push(fiveDaysAllWind[x])
+        }
+      }
 
+      const dayOneAvrgWind = Math.round(dayOneAllWind.reduce(add) / dayOneAllWind.length)
+      const dayTwoAvrgWind = Math.round(dayTwoAllWind.reduce(add) / dayTwoAllWind.length)
+      const dayThreeAvrgWind = Math.round(dayThreeAllWind.reduce(add) / dayThreeAllWind.length)
+      const dayFourAvrgWind = Math.round(dayFourAllWind.reduce(add) / dayFourAllWind.length)
+      const dayFiveAvrgWind = Math.round(dayFiveAllWind.reduce(add) / dayFiveAllWind.length)
+  
+      console.log(dayOneAvrgWind)
+      console.log(dayTwoAvrgWind)
+      console.log(dayThreeAvrgWind)
+      console.log(dayFourAvrgWind)
+      console.log(dayFiveAvrgWind)
 
+      //getting humidity of the different days
+      let todayAllHumidity = [data.list[0].main.humidity];
+      let dayOneAllHumidity = [];
+      let dayTwoAllHumidity = [];
+      let dayThreeAllHumidity =[];
+      let dayFourAllHumidity = [];
+      let dayFiveAllHumidity = [];
+      let fiveDaysAllHumidity = []
+
+      for (let j = 1; j < data.list.length; j++) {
+
+        if (data.list[0].dt_txt.split(' ')[0] === data.list[j].dt_txt.split(' ')[0]) {
+          todayAllHumidity.push(data.list[j].main.humidity)
+        } else {
+          fiveDaysAllHumidity.push(data.list[j].main.humidity)
+        }
+      }
+
+      //humidity for today's date
+      const todayAvrgHumidity = Math.round(todayAllHumidity.reduce(add) / todayAllHumidity.length)
+      console.log(todayAvrgHumidity)
+
+      //humidity for days after today
+      
+      for (let i = 0; i < fiveDaysAllHumidity.length; i++) {
+        if (i < 8) {
+        dayOneAllHumidity.push(fiveDaysAllHumidity[i])
+        } else if (i >= 8 && i < 16) {
+          dayTwoAllHumidity.push(fiveDaysAllHumidity[i])
+        } else if (i >= 16 && i < 24) {
+          dayThreeAllHumidity.push(fiveDaysAllHumidity[i])
+        } else if (i >= 24 && i < 32) {
+          dayFourAllHumidity.push(fiveDaysAllHumidity[i])
+        } else {
+          dayFiveAllHumidity.push(fiveDaysAllHumidity[i])
+        }
+      }
+
+      const dayOneAvrgHumidity = Math.round(dayOneAllHumidity.reduce(add) / dayOneAllHumidity.length)
+      const dayTwoAvrgHumidity = Math.round(dayTwoAllHumidity.reduce(add) / dayTwoAllHumidity.length)
+      const dayThreeAvrgHumidity = Math.round(dayThreeAllHumidity.reduce(add) / dayThreeAllHumidity.length)
+      const dayFourAvrgHumidity = Math.round(dayFourAllHumidity.reduce(add) / dayFourAllHumidity.length)
+      const dayFiveAvrgHumidity = Math.round(dayFiveAllHumidity.reduce(add) / dayFiveAllHumidity.length)
+  
+      console.log(dayOneAvrgHumidity)
+      console.log(dayTwoAvrgHumidity)
+      console.log(dayThreeAvrgHumidity)
+      console.log(dayFourAvrgHumidity)
+      console.log(dayFiveAvrgHumidity)
 
     })
 
