@@ -31,6 +31,8 @@ fetch(cityQueryURL)
     .then(function(response) {
       return response.json();
     }).then(function(data) {
+
+//==========================SHOWING WEATHER DATA==========================//
      
       //arrays for all days weather
 
@@ -197,8 +199,9 @@ fetch(cityQueryURL)
       <p>Humidity: ${dayFiveHumidity}%</p>
       `;
 
+//==========================STORING CITY SEARCH DATA==========================//
 
-
+      
 
 
     })
