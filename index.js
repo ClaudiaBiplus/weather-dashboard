@@ -241,6 +241,8 @@ fetch(cityQueryURL)
 // ================================================================================== //
       console.log('test from here')
 
+      //arrays for all days weather
+
       const todayWeather = [];
       const dayOneWeather = [];
       const dayTwoWeather = [];
@@ -259,7 +261,51 @@ fetch(cityQueryURL)
         }
       }
 
+      for (let i = 0; i < fiveDaysWeather.length; i++) {
+        if (i < 8) {
+        dayOneWeather.push(fiveDaysWeather[i])
+        } else if (i >= 8 && i < 16) {
+          dayTwoWeather.push(fiveDaysWeather[i])
+        } else if (i >= 16 && i < 24) {
+          dayThreeWeather.push(fiveDaysWeather[i])
+        } else if (i >= 24 && i < 32) {
+          dayFourWeather.push(fiveDaysWeather[i])
+        } else {
+          dayFiveWeather.push(fiveDaysWeather[i])
+        }
+      }
+
+      //extracting needed data
+
+      const todayTemps = [todayWeather[0].main.temp]
+      const dayOneTemps = []
+      const dayTwoTemps = []
+      const dayThreeTemps = []
+      const dayFourTemps = []
+      const dayFiveTemps = []
+
+      const todayWinds = [todayWeather[0].wind.speed]
+      const dayOneWinds = []
+      const dayTwoWinds = []
+      const dayThreeWinds = []
+      const dayFourWinds = []
+      const dayFiveWinds = []
+
+      const todayHumis = [todayWeather[0].main.humidity]
+      const dayOneHumis = []
+      const dayTwoHumis = []
+      const dayThreeHumis = []
+      const dayFourHumis = []
+      const dayFiveHumis = []
+
+
+
       console.log(todayWeather)
+      console.log(dayOneWeather)
+      console.log(dayTwoWeather)
+      console.log(dayThreeWeather)
+      console.log(dayFourWeather)
+      console.log(dayFiveWeather)
 
 
 
