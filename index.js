@@ -5,10 +5,33 @@ var APIKey = "89fd17c1d5d7414ecd0f21b3c17c86ec";
 const inputEl = document.querySelector("#search-input");
 const searchBtn = document.querySelector('#search-button')
 
+
 searchBtn.addEventListener('click', function () {
     const inputValue = inputEl.value
-    localStorage.setItem("city", inputValue);
+    localStorage.setItem('city', inputValue);
 })
+
+//==========================STORING CITY SEARCH DATA==========================//
+
+//storing city search history
+const cityFromStorage = localStorage.getItem('city');
+let cityHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+cityHistory.unshift(cityFromStorage)
+localStorage.setItem('searchHistory', JSON.stringify(cityHistory));
+
+//button from search history
+function addButton(value){
+  const button = document.createElement('button')
+  button.textContent = value;
+  const buttonDiv = document.querySelector('#history')
+  buttonDiv.appendChild(button)
+}
+
+const firstFive = cityHistory.slice(0, 5)
+firstFive.forEach((city) => addButton(city))
+
+
+//==========================SHOWING WEATHER DATA==========================//
 
 //getting coordinates fom city name 
 
@@ -31,19 +54,16 @@ fetch(cityQueryURL)
     .then(function(response) {
       return response.json();
     }).then(function(data) {
-
-//==========================SHOWING WEATHER DATA==========================//
      
       //arrays for all days weather
 
       const todayWeather = [];
       const fiveDaysWeather =[];
 
-      for (let m = 1; m < data.list.length; m++) {
+      for (let m = 0; m < data.list.length; m++) {
 
         if (data.list[0].dt_txt.split(' ')[0] === data.list[m].dt_txt.split(' ')[0]) {
-          let list = data.list[m]
-          todayWeather.push(list)
+          todayWeather.push(data.list[m])
         } else {
           fiveDaysWeather.push(data.list[m])
         }
@@ -199,16 +219,6 @@ fetch(cityQueryURL)
       <p>Humidity: ${dayFiveHumidity}%</p>
       `;
 
-//==========================STORING CITY SEARCH DATA==========================//
-
-      
-
-
     })
 
-
-
     });
-
-
-   
