@@ -244,11 +244,6 @@ fetch(cityQueryURL)
       //arrays for all days weather
 
       const todayWeather = [];
-      const dayOneWeather = [];
-      const dayTwoWeather = [];
-      const dayThreeWeather = [];
-      const dayFourWeather = [];
-      const dayFiveWeather = [];
       const fiveDaysWeather =[];
 
       for (let m = 1; m < data.list.length; m++) {
@@ -258,20 +253,6 @@ fetch(cityQueryURL)
           todayWeather.push(list)
         } else {
           fiveDaysWeather.push(data.list[m])
-        }
-      }
-
-      for (let i = 0; i < fiveDaysWeather.length; i++) {
-        if (i < 8) {
-        dayOneWeather.push(fiveDaysWeather[i])
-        } else if (i >= 8 && i < 16) {
-          dayTwoWeather.push(fiveDaysWeather[i])
-        } else if (i >= 16 && i < 24) {
-          dayThreeWeather.push(fiveDaysWeather[i])
-        } else if (i >= 24 && i < 32) {
-          dayFourWeather.push(fiveDaysWeather[i])
-        } else {
-          dayFiveWeather.push(fiveDaysWeather[i])
         }
       }
 
@@ -298,14 +279,54 @@ fetch(cityQueryURL)
       const dayFourHumis = []
       const dayFiveHumis = []
 
+      //data for current date
+
+      for (let m = 1; m < todayWeather.length; m++) {
+
+        todayTemps.push(todayWeather[m].main.temp)
+        todayWinds.push(todayWeather[m].wind.speed)
+        todayHumis.push(todayWeather[m].main.humidity)
+        
+      }
+
+      const todayTemperature = Math.round(todayTemps.reduce(add) / todayTemps.length)
+      const todayHumidity = Math.round(todayHumis.reduce(add) / todayHumis.length)
+      const todayWindSpeed = Math.round(todayWinds.reduce(add) / todayWinds.length)
+
+      console.log(todayTemperature)
+      console.log(todayWindSpeed)
+      console.log(todayHumidity)
+
+      //data for next days
+
+      for (let j = 0; j < fiveDaysWeather.length; j++) {
+        if (j < 8) {
+        dayOneTemps.push(fiveDaysWeather[j].main.temp)
+        dayOneWinds.push(fiveDaysWeather[j].wind.speed)
+        dayOneHumis.push(fiveDaysWeather[j].main.humidity)
+        } else if (j >= 8 && j < 16) {
+          dayTwoTemps.push(fiveDaysWeather[j].main.temp)
+          dayTwoWinds.push(fiveDaysWeather[j].wind.speed)
+          dayTwoHumis.push(fiveDaysWeather[j].main.humidity)
+        } else if (j >= 16 && j < 24) {
+          dayThreeTemps.push(fiveDaysWeather[j].main.temp)
+          dayThreeWinds.push(fiveDaysWeather[j].wind.speed)
+          dayThreeHumis.push(fiveDaysWeather[j].main.humidity)
+        } else if (j >= 24 && j < 32) {
+          dayFourTemps.push(fiveDaysWeather[j].main.temp)
+          dayFourWinds.push(fiveDaysWeather[j].wind.speed)
+          dayFourHumis.push(fiveDaysWeather[j].main.humidity)
+        } else {
+          dayFiveTemps.push(fiveDaysWeather[j].main.temp)
+          dayFiveWinds.push(fiveDaysWeather[j].wind.speed)
+          dayFiveHumis.push(fiveDaysWeather[j].main.humidity)
+        }
+      }
+
+      console.log(dayTwoTemps)
 
 
-      console.log(todayWeather)
-      console.log(dayOneWeather)
-      console.log(dayTwoWeather)
-      console.log(dayThreeWeather)
-      console.log(dayFourWeather)
-      console.log(dayFiveWeather)
+
 
 
 
