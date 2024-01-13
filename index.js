@@ -27,15 +27,17 @@ localStorage.setItem('searchHistory', JSON.stringify(cityHistory));
 function addButton(value){
   const button = document.createElement('button')
   button.textContent = value;
-  button.id = value
+  button.id = value;
+  button.classList.add('btn', 'btn-primary', 'my-1')
+
   const buttonDiv = document.querySelector('#history')
   buttonDiv.appendChild(button)
 
   button.addEventListener('click', buttonClicked)
 }
 
-//const firstFive = cityHistory.slice(0, 5)
-cityHistory.forEach((city) => addButton(city, city))
+const firstTen = cityHistory.slice(0, 10)
+firstTen.forEach((city) => addButton(city, city))
 
 //get weather info for the button clicked
 function buttonClicked () {
@@ -189,11 +191,13 @@ function buttonClicked () {
         const todayWeatherDiv = document.querySelector('#today');
         const todaysDate = dayjs().format('D MMM YYYY')
         todayWeatherDiv.innerHTML = `
-        <h3>${cityName}</br>${todaysDate}</h3>
-        <div id="icon"><img id="wicon" src="${todayIcon}" alt="Weather icon"></div>
-        <p>Temperature: ${todayTemperature}°C</p>
-        <p>Wind Speed: ${todayWindSpeed} m/s</p>
-        <p>Humidity: ${todayHumidity}%</p>
+        <div class="card-body">
+          <h3 class="card-title">${cityName} ${todaysDate}</h3>
+          <div id="icon"><img id="wicon" src="${todayIcon}" alt="Weather icon"></div>
+          <p class="card-text">Temperature: ${todayTemperature}°C</p>
+          <p class="card-text">Wind Speed: ${todayWindSpeed} m/s</p>
+          <p class="card-text">Humidity: ${todayHumidity}%</p>
+        </div>
         `;
 
         //display following days weather
@@ -206,31 +210,63 @@ function buttonClicked () {
         
         forecastDiv.innerHTML = `
         <h3>5-Day Forecast</h3>
-        <h4>${dayOne}</h4>
-        <div id="icon"><img id="wicon" src="${dayOneIcon}" alt="Weather icon"></div>
-        <p>Temperature: ${dayOneTemperature}°C</p>
-        <p>Wind Speed: ${dayOneWindSpeed} m/s</p>
-        <p>Humidity: ${dayOneHumidity}%</p>
-        <h4>${dayTwo}</h4>
-        <div id="icon"><img id="wicon" src="${dayTwoIcon}" alt="Weather icon"></div>
-        <p>Temperature: ${dayTwoTemperature}°C</p>
-        <p>Wind Speed: ${dayTwoWindSpeed} m/s</p>
-        <p>Humidity: ${dayTwoHumidity}%</p>
-        <h4>${dayThree}</h4>
-        <div id="icon"><img id="wicon" src="${dayThreeIcon}" alt="Weather icon"></div>
-        <p>Temperature: ${dayThreeTemperature}°C</p>
-        <p>Wind Speed: ${dayThreeWindSpeed} m/s</p>
-        <p>Humidity: ${dayThreeHumidity}%</p>
-        <h4>${dayFour}</h4>
-        <div id="icon"><img id="wicon" src="${dayFourIcon}" alt="Weather icon"></div>
-        <p>Temperature: ${dayFourTemperature}°C</p>
-        <p>Wind Speed: ${dayFourWindSpeed} m/s</p>
-        <p>Humidity: ${dayFourHumidity}%</p>
-        <h4>${dayFive}</h4>
-        <div id="icon"><img id="wicon" src="${dayFiveIcon}" alt="Weather icon"></div>
-        <p>Temperature: ${dayFiveTemperature}°C</p>
-        <p>Wind Speed: ${dayFiveWindSpeed} m/s</p>
-        <p>Humidity: ${dayFiveHumidity}%</p>
+        <div class="row">
+          <div class="col forecastDay">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">${dayOne}</h4>
+                <div id="icon"><img id="wicon" src="${dayOneIcon}" alt="Weather icon"></div>
+                <p class="card-text">Temperature: ${dayOneTemperature}°C</p>
+                <p class="card-text">Wind Speed: ${dayOneWindSpeed} m/s</p>
+                <p class="card-text">Humidity: ${dayOneHumidity}%</p>
+              </div>
+            </div>
+          </div>
+          <div class="col forecastDay">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">${dayTwo}</h4>
+                <div id="icon"><img id="wicon" src="${dayTwoIcon}" alt="Weather icon"></div>
+                <p class="card-text">Temperature: ${dayTwoTemperature}°C</p>
+                <p class="card-text">Wind Speed: ${dayTwoWindSpeed} m/s</p>
+                <p class="card-text">Humidity: ${dayTwoHumidity}%</p>
+              </div>
+            </div>
+          </div>
+          <div class="col forecastDay">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">${dayThree}</h4>
+                <div id="icon"><img id="wicon" src="${dayThreeIcon}" alt="Weather icon"></div>
+                <p class="card-text">Temperature: ${dayThreeTemperature}°C</p>
+                <p class="card-text">Wind Speed: ${dayThreeWindSpeed} m/s</p>
+                <p class="card-text">Humidity: ${dayThreeHumidity}%</p>
+              </div>
+            </div>
+          </div>
+          <div class="col forecastDay">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">${dayFour}</h4>
+                <div id="icon"><img id="wicon" src="${dayFourIcon}" alt="Weather icon"></div>
+                <p class="card-text">Temperature: ${dayFourTemperature}°C</p>
+                <p class="card-text">Wind Speed: ${dayFourWindSpeed} m/s</p>
+                <p class="card-text">Humidity: ${dayFourHumidity}%</p>
+              </div>
+            </div>
+          </div>
+          <div class="col forecastDay">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">${dayFive}</h4>
+                <div id="icon"><img id="wicon" src="${dayFiveIcon}" alt="Weather icon"></div>
+                <p class="card-text">Temperature: ${dayFiveTemperature}°C</p>
+                <p class="card-text">Wind Speed: ${dayFiveWindSpeed} m/s</p>
+                <p class="card-text">Humidity: ${dayFiveHumidity}%</p>
+              </div>
+            </div>
+          </div>
+        </div>
         `;
 
     })
