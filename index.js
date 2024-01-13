@@ -12,6 +12,7 @@ searchBtn.addEventListener('click', function () {
 })
 
 //executing the rest of the code only if there is a value in localStorage for city
+
 if (localStorage.getItem('city') !== null) {
 
 //==========================STORING CITY SEARCH DATA==========================//
@@ -26,13 +27,22 @@ localStorage.setItem('searchHistory', JSON.stringify(cityHistory));
 function addButton(value){
   const button = document.createElement('button')
   button.textContent = value;
+  button.id = value
   const buttonDiv = document.querySelector('#history')
   buttonDiv.appendChild(button)
+
+  button.addEventListener('click', buttonClicked)
 }
 
-const firstFive = cityHistory.slice(0, 5)
-firstFive.forEach((city) => addButton(city))
+//const firstFive = cityHistory.slice(0, 5)
+cityHistory.forEach((city) => addButton(city, city))
 
+//get weather info for the button clicked
+function buttonClicked () {
+  let buttonId = this.id
+  localStorage.setItem('city', buttonId)
+  location.reload()
+}
 
 //==========================SHOWING WEATHER DATA==========================//
 
