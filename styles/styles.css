@@ -1,0 +1,89 @@
+/* title */
+
+@font-face {
+    font-family: stropica;
+    src: url(../fonts/StropicaDEMO.otf);
+}
+
+@font-face {
+    font-family: euphorigenic;
+    src: url(../fonts/euphorigenic.otf);
+}
+
+@font-face {
+    font-family: oldstyle;
+    src: url(../fonts/OLDSH___.TTF);
+}
+
+/* text */
+
+@font-face {
+    font-family: gatha;
+    src: url(../fonts/ZTGatha-SemiBold.otf);
+}
+
+@font-face {
+    font-family: roboto;
+    src: url(../fonts/Roboto-Regular.ttf);
+}
+
+* {
+    font-family: gatha;
+}
+
+body {
+    background-color: #F0FBEF;
+}
+
+/* header {
+    background-color: #908670;
+} */
+
+header h1 {
+    font-family: euphorigenic;
+}
+
+.btn {
+    background-color: #60c96c;
+    border: 0;
+}
+
+/* TODAY FORECAST */
+
+#today {
+    background-color: #D3F2CE;
+    border-radius: 1em;
+}
+
+.city-name {
+    font-size: 3em;
+}
+
+#wicon {
+    height: 100px;
+    width: auto;
+}
+
+#today-details {
+    align-self: flex-end;
+    border-left: solid #60c96c;
+}
+
+/* 5-DAY FORECAST */
+
+/* #forecast .card-body {
+    background-color: #809ea1;
+} */
+
+#forecast .card-text {
+    font-size: 0.8em;
+}
+
+#forecast .card-title {
+    font-size: 1em;
+}
+
+
+
+
+

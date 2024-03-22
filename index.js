@@ -193,12 +193,17 @@ function buttonClicked () {
         const todayWeatherDiv = document.querySelector('#today');
         const todaysDate = dayjs().format('D MMM YYYY')
         todayWeatherDiv.innerHTML = `
-        <div class="card-body">
-          <h3 class="card-title">${cityName} ${todaysDate}</h3>
-          <div id="icon"><img id="wicon" src="${todayIcon}" alt="Weather icon"></div>
-          <p class="card-text">Temperature: ${todayTemperature}°C</p>
-          <p class="card-text">Wind Speed: ${todayWindSpeed} m/s</p>
-          <p class="card-text">Humidity: ${todayHumidity}%</p>
+        <div class="card-body px-0 row">
+          <div class="col">
+            <h3 class="card-title city-name">${cityName}</h3>
+            <div class="todayDate">${todaysDate}</div>
+            <div id="icon"><img id="wicon" src="${todayIcon}" alt="Weather icon"></div>
+          </div>
+          <div class="col" id="today-details">
+            <p class="card-text">Temperature: ${todayTemperature}°C</p>
+            <p class="card-text">Wind Speed: ${todayWindSpeed} m/s</p>
+            <p class="card-text">Humidity: ${todayHumidity}%</p>
+          </div>
         </div>
         `;
 
