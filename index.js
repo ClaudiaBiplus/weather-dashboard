@@ -25,6 +25,7 @@ localStorage.setItem('searchHistory', JSON.stringify(cityHistory));
 
 //button from search history
 function addButton(value){
+  if (document.getElementById(value) === null) {
   const button = document.createElement('button')
   button.textContent = value;
   button.id = value;
@@ -34,6 +35,7 @@ function addButton(value){
   buttonDiv.appendChild(button)
 
   button.addEventListener('click', buttonClicked)
+  }
 }
 
 const firstTen = cityHistory.slice(0, 10)
@@ -274,3 +276,5 @@ function buttonClicked () {
     });
   }
   
+
+
