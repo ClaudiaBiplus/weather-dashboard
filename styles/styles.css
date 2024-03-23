@@ -27,31 +27,56 @@
     src: url(../fonts/Roboto-Regular.ttf);
 }
 
+@font-face {
+    font-family: nixieone;
+    src: url(../fonts/NixieOne.ttf);
+}
+
+@font-face {
+    font-family: fragmentcore;
+    src: url(../fonts/Fragmentcore.otf);
+}
+
 * {
-    font-family: gatha;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 body {
-    background-color: #F0FBEF;
+    background-color: #D7E4C0;
 }
-
-/* header {
-    background-color: #908670;
-} */
 
 header h1 {
-    font-family: euphorigenic;
+    font-family: oldstyle;
+    color: #756357;
+    font-size: 4em;
 }
 
-.btn {
-    background-color: #60c96c;
+#history .btn {
+    background-color: #BBC3A4;
     border: 0;
+    border-radius: 1em;
+    color: #756357;
+}
+
+#history .btn:hover {
+    background-color: #A4AE84;
+}
+
+#search-form .btn {
+    border-color: #BBC3A4;
+    color: #756357;
+    border: none;
+}
+
+#search-form .btn:hover {
+    background-color: transparent;
+    color: #52453D;
 }
 
 /* TODAY FORECAST */
 
 #today {
-    background-color: #D3F2CE;
+    background-color: #C6DCBA;
     border-radius: 1em;
 }
 
@@ -66,13 +91,13 @@ header h1 {
 
 #today-details {
     align-self: flex-end;
-    border-left: solid #60c96c;
+    border-left: solid #A5C892;
 }
 
 /* 5-DAY FORECAST */
 
 #forecast .card {
-    background-color: #D3F2CE;
+    background-color: #C6DCBA;
     border-radius: 1em;
 }
 
@@ -82,6 +107,7 @@ header h1 {
 
 #forecast .card-title {
     font-size: 1em;
+    font-weight: bold;
 }
 
 
