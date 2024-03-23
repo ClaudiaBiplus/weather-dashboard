@@ -59,7 +59,7 @@ header h1 {
     font-size: 3em;
 }
 
-#wicon {
+#today #wicon {
     height: 100px;
     width: auto;
 }
@@ -71,9 +71,10 @@ header h1 {
 
 /* 5-DAY FORECAST */
 
-/* #forecast .card-body {
-    background-color: #809ea1;
-} */
+#forecast .card {
+    background-color: #D3F2CE;
+    border-radius: 1em;
+}
 
 #forecast .card-text {
     font-size: 0.8em;

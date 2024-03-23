@@ -216,10 +216,9 @@ function buttonClicked () {
         const dayFive = dayjs().add(5, 'd').format('D MMM YYYY')
         
         forecastDiv.innerHTML = `
-        <h3>5-Day Forecast</h3>
         <div class="row">
           <div class="col forecastDay">
-            <div class="card">
+            <div class="card border-0 shadow">
               <div class="card-body">
                 <h4 class="card-title">${dayOne}</h4>
                 <div id="icon"><img id="wicon" src="${dayOneIcon}" alt="Weather icon"></div>
@@ -230,7 +229,7 @@ function buttonClicked () {
             </div>
           </div>
           <div class="col forecastDay">
-            <div class="card">
+            <div class="card border-0 shadow">
               <div class="card-body">
                 <h4 class="card-title">${dayTwo}</h4>
                 <div id="icon"><img id="wicon" src="${dayTwoIcon}" alt="Weather icon"></div>
@@ -241,7 +240,7 @@ function buttonClicked () {
             </div>
           </div>
           <div class="col forecastDay">
-            <div class="card">
+            <div class="card border-0 shadow">
               <div class="card-body">
                 <h4 class="card-title">${dayThree}</h4>
                 <div id="icon"><img id="wicon" src="${dayThreeIcon}" alt="Weather icon"></div>
@@ -252,7 +251,7 @@ function buttonClicked () {
             </div>
           </div>
           <div class="col forecastDay">
-            <div class="card">
+            <div class="card border-0 shadow">
               <div class="card-body">
                 <h4 class="card-title">${dayFour}</h4>
                 <div id="icon"><img id="wicon" src="${dayFourIcon}" alt="Weather icon"></div>
@@ -263,7 +262,7 @@ function buttonClicked () {
             </div>
           </div>
           <div class="col forecastDay">
-            <div class="card">
+            <div class="card border-0 shadow">
               <div class="card-body">
                 <h4 class="card-title">${dayFive}</h4>
                 <div id="icon"><img id="wicon" src="${dayFiveIcon}" alt="Weather icon"></div>
